@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="personId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="deleteOut" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,26 +27,26 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "deletePersonResponse", propOrder = {
-    "personId"
+    "deleteOut"
 })
 public class DeletePersonResponse {
 
-    protected long personId;
+    protected long deleteOut;
 
     /**
-     * Gets the value of the personId property.
+     * Gets the value of the deleteOut property.
      * 
      */
-    public long getPersonId() {
-        return personId;
+    public long getDeleteOut() {
+        return deleteOut;
     }
 
     /**
-     * Sets the value of the personId property.
+     * Sets the value of the deleteOut property.
      * 
      */
-    public void setPersonId(long value) {
-        this.personId = value;
+    public void setDeleteOut(long value) {
+        this.deleteOut = value;
     }
 
 }

@@ -2,73 +2,201 @@ package client;
 
 import java.util.List;
 
-import javax.xml.ws.Holder;
-
 import introsde.assignment.soap.ws.*;
 
+
 public class PeopleClient{
+	
     public static void main(String[] args) throws Exception {
+    	
+    	long personId = 0;
+    	
         PeopleService service = new PeopleService();
         People people = service.getPeopleImplPort();
+
+        //-------------------- URL ----------------------------
+        System.out.println(service.getWSDLDocumentLocation());
         
-        //Task 1 
-        List<Person> pList = people.readPersonList();
-        System.out.println("Result ==> "+pList);
-        System.out.println("First Person in the list ==> "+pList.get(0).getFirstname());
+
+        //-------------------- Task 1 ----------------------------
+        System.out.println("\n--------------------Task1: readPersonList() --------------------\n");
         
-        //Task 2
-        Person p = people.readPerson(3);
-        System.out.println("Result ==> "+p.getFirstname());
+        //get and print all the person in the database
+        List<Person> personList = people.readPersonList();
+        for(Person p : personList)
+        	printPerson(p);
         
-        //Task 3
-        p.setFirstname("HOLDER");
-		Holder<Person> personHolder = new Holder<Person>(p);
-        people.updatePerson(personHolder);
+        //save first person for future operations
+        if(!personList.isEmpty())
+        	personId = personList.get(0).getPersonId();
         
-        //Task 2
-        Person newP = people.readPerson(3);
-        System.out.println("Result ==> "+newP.getFirstname());
         
-        //Task 4
-        newP.setFirstname("Jim");
-        personHolder = new Holder<Person>(newP);
-        people.createPerson(personHolder);
-        /*
-        //Task 5
-        people.deletePerson(jim.getPersonId());
+
+        //-------------------- Task 2 ----------------------------
+        System.out.println("\n--------------------Task2: readPerson("+personId+")--------------------\n");
         
-        //Task 6
-       // System.out.println(people.readPersonHistory(3,"weight").get(0).getMeasureValue());
+        Person p = people.readPerson(personId);
+    	printPerson(p);
+    	
+
+    	
+        //-------------------- Task 3 ----------------------------
+        System.out.println("\n-------------------- Task3: updatePerson(Person p) ----------------------------\n");
+
+        p.setFirstname(p.getFirstname() + " jr.");
+        Person updateP = people.updatePerson(p);
+        //print first person of the list after re-requesting it
+        printPerson(updateP);
+
         
-        //Task 7
-        for(String s : people.readMeasureTypes()){
-        	System.out.println(s);
+
+        //-------------------- Task 4 ----------------------------
+        System.out.println("\n-------------------- Task4: createPerson(Person p) ----------------------------\n");
+        
+        updateP.setFirstname("Jim");
+        Person newPerson = people.createPerson(updateP);
+        //reprint the person to see if it was updated
+        printPerson(newPerson);
+
+        
+
+        //-------------------- Task 5 ----------------------------
+        System.out.println("\n-------------------- Task5: deletePerson("+newPerson.getPersonId()+") ----------------------------\n");
+        
+        people.deletePerson(newPerson.getPersonId());
+        System.out.println("Running readPerson("+newPerson.getPersonId()+"):");
+        //retrying to print the person to see if it still exists (if something was returned)
+        printPerson(people.readPerson(newPerson.getPersonId()));
+        
+
+        
+        //-------------------- Task 6 ----------------------------
+        System.out.println("\n-------------------- Task6: readPersonHistory("+personId+",steps) ----------------------------\n");
+        
+        //the history does not include the current healthprofile
+        List<HealthMeasureHistory> history = people.readPersonHistory(personId, "steps");
+        if(!history.isEmpty()){
+        	int i = 0;
+	        for(HealthMeasureHistory hm : history){
+	        	i++;
+	        	System.out.println("Measure "+i+": ");
+	        	printMeasure(hm); 	
+	        }
+        } else {
+        	System.out.println("\t No measures of type steps for Person with id: "+personId);
         }
         
-        //Task 8
-        System.out.println("1 "+ people.readPersonMeasure(3, "weight", 1));
-        System.out.println("2 "+ people.readPersonMeasure(3, "height", 1));
         
-        MeasureDefinition mDef = new MeasureDefinition();
-        mDef.setTid(3);
-        mDef.setMeasureType("steps");
         
-        Measure m = new Measure();
-        m.setMeasureDefinition(mDef);
-        m.setMeasureValue("20");
-        //Task 9
-     //   people.savePersonMeasure(3, m);
-        /*
-        m.setMeasureValue("777");
-        m.setMid(786);
-        //Task 10
-        people.updatePersonMeasure(3, m);
+        //-------------------- Task 7 ----------------------------
+        System.out.println("\n-------------------- Task7: readMeasureTypes() ----------------------------\n");
         
-        HealthMeasureHistory historyM = new HealthMeasureHistory();
-        historyM.setMeasureValue("333");
-        historyM.setMeasureDefinition(mDef);
-        historyM.setMid(153);
-        people.updatePersonMeasure(3, historyM);
-    }*/
+        System.out.println("Measure Types:");
+        for(String s : people.readMeasureTypes()){
+        	System.out.println("\t"+s);
+        }
+        System.out.println("");        
+        
+        
+        //-------------------- Task 8 ----------------------------
+        System.out.println("\n-------------------- Task8: readPersonMeasure("+personId+", steps , 153) ----------------------------\n");
+
+        System.out.println("Measure with mid 153:\n");
+        HealthMeasureHistory measure = people.readPersonMeasure(personId, "steps", 153);
+        printMeasure(measure);     
+        
+        
+        //-------------------- Task 9 ----------------------------
+        System.out.println("\n-------------------- Task9: savePersonMeasure("+personId+", measure) ----------------------------\n");
+
+        Measure newMeasure = new Measure();
+        newMeasure.setMeasureValue(measure.getMeasureValue()+"1");
+        newMeasure.setMeasureDefinition(measure.getMeasureDefinition());
+        //returning the person on whose healthprofile the measure was added
+        Person personT9 = people.savePersonMeasure(personId, newMeasure);
+        //print the person to see if he has a new measure
+        printPerson(personT9);
+        
+        
+        //-------------------- Task 10 ----------------------------
+        System.out.println("\n-------------------- Task10: updatePersonMeasure("+personId+", measure) ----------------------------\n");
+        
+        newMeasure = null;
+    	//Getting a measure from the person (since we added one before it should exist)
+        if(personT9.getCurrentHealth().getMeasure() != null){
+        	newMeasure = personT9.getCurrentHealth().getMeasure().get(0);
+        	//modify the value of the measure
+        	newMeasure.setMeasureValue(newMeasure.getMeasureValue()+"1");
+            people.updatePersonMeasure(personId, newMeasure);
+            //reprint the people to see the differences
+            printPerson(people.readPerson(personT9.getPersonId()));
+        } else {
+        	System.out.println("Measure not found.");
+        }  
     }
+    
+    //Prints the given and current healthprofile
+    public static void printPerson(Person p) {
+
+       	if(p != null){
+			System.out.println("");
+			
+			System.out.println(" ==> PersonId: " + p.getPersonId());
+			System.out.println(" ==> Firstname: " + p.getFirstname());
+			System.out.println(" ==> Lastname: " + p.getLastname());
+			System.out.println(" ==> Birthdate: " + p.getBirthdate());
+			System.out.println(" ==> Email: " + p.getEmail());
+			System.out.println(" ==> Username: " + p.getUsername());
+			System.out.println(" ==> Current Health Profile:\n");
+			if(!p.getCurrentHealth().getMeasure().isEmpty()){
+				int i = 0;
+				for (Measure m : p.getCurrentHealth().getMeasure()) {
+					i++;
+					System.out.println("\t  Measure "+i+"");
+					printMeasure(m);
+					
+				}
+			} else {
+				System.out.println("\t No Measures");
+			}
+			System.out.println("");
+       	} else{
+       		System.out.println("\tPerson not found.");
+       	}
+   	}
+    
+    //prints a given measure from the history
+	public static void printMeasure(HealthMeasureHistory m) {
+		
+		if(m != null){
+			
+			System.out.println("\t ==> Mid: " + m.getMid());
+			System.out.println("\t ==> Date Registered: " + m.getDateRegistered());
+			System.out.println("\t ==> Measure Value: " + m.getMeasureValue());
+			System.out.println("\t ==> Measure Type: " + m.getMeasureDefinition().getMeasureType());
+			System.out.println("\t ==> Measure Value Type: " + m.getMeasureDefinition().getMeasureValueType());
+			
+			System.out.println("");
+	   	} else{
+	   		System.out.println("\tNo measure");
+	   	}
+	}
+	
+	//prints a given measure from the current profile
+	public static void printMeasure(Measure m) {
+		
+		if(m != null){
+			
+			System.out.println("\t ==> Mid: " + m.getMid());
+			System.out.println("\t ==> Date Registered: " + m.getDateRegistered());
+			System.out.println("\t ==> Measure Value: " + m.getMeasureValue());
+			System.out.println("\t ==> Measure Type: " + m.getMeasureDefinition().getMeasureType());
+			System.out.println("\t ==> Measure Value Type: " + m.getMeasureDefinition().getMeasureValueType());
+			
+			System.out.println("");
+	   	} else{
+	   		System.out.println("\tNo measure");
+	   	}
+	}
+
 }

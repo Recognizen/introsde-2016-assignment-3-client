@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -31,7 +32,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="measure" type="{http://ws.soap.assignment.introsde/}measure" maxOccurs="unbounded" minOccurs="0"/>
+ *                   &lt;element ref="{http://ws.soap.assignment.introsde/}measure" maxOccurs="unbounded" minOccurs="0"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -237,7 +238,7 @@ public class Person {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="measure" type="{http://ws.soap.assignment.introsde/}measure" maxOccurs="unbounded" minOccurs="0"/>
+     *         &lt;element ref="{http://ws.soap.assignment.introsde/}measure" maxOccurs="unbounded" minOccurs="0"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -252,7 +253,8 @@ public class Person {
     })
     public static class CurrentHealth {
 
-        protected List<Measure> measure;
+        @XmlElement(namespace = "http://ws.soap.assignment.introsde/", nillable = true)
+        protected List<Object> measure;
 
         /**
          * Gets the value of the measure property.
@@ -272,13 +274,13 @@ public class Person {
          * 
          * <p>
          * Objects of the following type(s) are allowed in the list
-         * {@link Measure }
+         * {@link Object }
          * 
          * 
          */
-        public List<Measure> getMeasure() {
+        public List<Object> getMeasure() {
             if (measure == null) {
-                measure = new ArrayList<Measure>();
+                measure = new ArrayList<Object>();
             }
             return this.measure;
         }

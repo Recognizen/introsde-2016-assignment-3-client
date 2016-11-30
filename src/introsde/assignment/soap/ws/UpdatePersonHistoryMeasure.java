@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for updatePersonMeasure complex type.
+ * <p>Java class for updatePersonHistoryMeasure complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="updatePersonMeasure">
+ * &lt;complexType name="updatePersonHistoryMeasure">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -28,11 +28,11 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "updatePersonMeasure", propOrder = {
+@XmlType(name = "updatePersonHistoryMeasure", propOrder = {
     "personId",
     "measure"
 })
-public class UpdatePersonMeasure {
+public class UpdatePersonHistoryMeasure {
 
     protected long personId;
     @XmlElement(namespace = "http://ws.soap.assignment.introsde/", nillable = true)

@@ -106,11 +106,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UpdatePersonMeasure }
+     * Create an instance of {@link UpdatePersonHistoryMeasure }
      * 
      */
-    public UpdatePersonMeasure createUpdatePersonMeasure() {
-        return new UpdatePersonMeasure();
+    public UpdatePersonHistoryMeasure createUpdatePersonHistoryMeasure() {
+        return new UpdatePersonHistoryMeasure();
     }
 
     /**
@@ -170,6 +170,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdatePersonMeasure }
+     * 
+     */
+    public UpdatePersonMeasure createUpdatePersonMeasure() {
+        return new UpdatePersonMeasure();
+    }
+
+    /**
      * Create an instance of {@link ReadPersonHistoryResponse }
      * 
      */
@@ -207,6 +215,14 @@ public class ObjectFactory {
      */
     public ReadPerson createReadPerson() {
         return new ReadPerson();
+    }
+
+    /**
+     * Create an instance of {@link UpdatePersonHistoryMeasureResponse }
+     * 
+     */
+    public UpdatePersonHistoryMeasureResponse createUpdatePersonHistoryMeasureResponse() {
+        return new UpdatePersonHistoryMeasureResponse();
     }
 
     /**
@@ -267,12 +283,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UpdatePersonMeasure }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdatePersonHistoryMeasure }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.soap.assignment.introsde/", name = "updatePersonHistoryMeasure")
-    public JAXBElement<UpdatePersonMeasure> createUpdatePersonHistoryMeasure(UpdatePersonMeasure value) {
-        return new JAXBElement<UpdatePersonMeasure>(_UpdatePersonHistoryMeasure_QNAME, UpdatePersonMeasure.class, null, value);
+    public JAXBElement<UpdatePersonHistoryMeasure> createUpdatePersonHistoryMeasure(UpdatePersonHistoryMeasure value) {
+        return new JAXBElement<UpdatePersonHistoryMeasure>(_UpdatePersonHistoryMeasure_QNAME, UpdatePersonHistoryMeasure.class, null, value);
     }
 
     /**
@@ -411,12 +427,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UpdatePersonMeasureResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdatePersonHistoryMeasureResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.soap.assignment.introsde/", name = "updatePersonHistoryMeasureResponse")
-    public JAXBElement<UpdatePersonMeasureResponse> createUpdatePersonHistoryMeasureResponse(UpdatePersonMeasureResponse value) {
-        return new JAXBElement<UpdatePersonMeasureResponse>(_UpdatePersonHistoryMeasureResponse_QNAME, UpdatePersonMeasureResponse.class, null, value);
+    public JAXBElement<UpdatePersonHistoryMeasureResponse> createUpdatePersonHistoryMeasureResponse(UpdatePersonHistoryMeasureResponse value) {
+        return new JAXBElement<UpdatePersonHistoryMeasureResponse>(_UpdatePersonHistoryMeasureResponse_QNAME, UpdatePersonHistoryMeasureResponse.class, null, value);
     }
 
     /**

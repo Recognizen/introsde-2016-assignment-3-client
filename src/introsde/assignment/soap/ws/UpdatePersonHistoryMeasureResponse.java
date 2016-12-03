@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="measureOut" type="{http://ws.soap.assignment.introsde/}healthMeasureHistory" minOccurs="0"/>
+ *         &lt;element name="healthHistory" type="{http://ws.soap.assignment.introsde/}healthMeasureHistory" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "updatePersonHistoryMeasureResponse", propOrder = {
-    "measureOut"
+    "healthHistory"
 })
 public class UpdatePersonHistoryMeasureResponse {
 
-    protected HealthMeasureHistory measureOut;
+    protected HealthMeasureHistory healthHistory;
 
     /**
-     * Gets the value of the measureOut property.
+     * Gets the value of the healthHistory property.
      * 
      * @return
      *     possible object is
      *     {@link HealthMeasureHistory }
      *     
      */
-    public HealthMeasureHistory getMeasureOut() {
-        return measureOut;
+    public HealthMeasureHistory getHealthHistory() {
+        return healthHistory;
     }
 
     /**
-     * Sets the value of the measureOut property.
+     * Sets the value of the healthHistory property.
      * 
      * @param value
      *     allowed object is
      *     {@link HealthMeasureHistory }
      *     
      */
-    public void setMeasureOut(HealthMeasureHistory value) {
-        this.measureOut = value;
+    public void setHealthHistory(HealthMeasureHistory value) {
+        this.healthHistory = value;
     }
 
 }

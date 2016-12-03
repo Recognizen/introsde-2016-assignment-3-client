@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="measureOut" type="{http://ws.soap.assignment.introsde/}person" minOccurs="0"/>
+ *         &lt;element name="person" type="{http://ws.soap.assignment.introsde/}person" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "savePersonMeasureResponse", propOrder = {
-    "measureOut"
+    "person"
 })
 public class SavePersonMeasureResponse {
 
-    protected Person measureOut;
+    protected Person person;
 
     /**
-     * Gets the value of the measureOut property.
+     * Gets the value of the person property.
      * 
      * @return
      *     possible object is
      *     {@link Person }
      *     
      */
-    public Person getMeasureOut() {
-        return measureOut;
+    public Person getPerson() {
+        return person;
     }
 
     /**
-     * Sets the value of the measureOut property.
+     * Sets the value of the person property.
      * 
      * @param value
      *     allowed object is
      *     {@link Person }
      *     
      */
-    public void setMeasureOut(Person value) {
-        this.measureOut = value;
+    public void setPerson(Person value) {
+        this.person = value;
     }
 
 }

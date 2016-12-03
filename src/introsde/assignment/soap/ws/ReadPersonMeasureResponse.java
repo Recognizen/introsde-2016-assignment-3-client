@@ -3,7 +3,6 @@ package introsde.assignment.soap.ws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -17,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://ws.soap.assignment.introsde/}measure" minOccurs="0"/>
+ *         &lt;element name="healthHistory" type="{http://ws.soap.assignment.introsde/}healthMeasureHistory" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "readPersonMeasureResponse", propOrder = {
-    "measure"
+    "healthHistory"
 })
 public class ReadPersonMeasureResponse {
 
-    @XmlElement(namespace = "http://ws.soap.assignment.introsde/", nillable = true)
-    protected Object measure;
+    protected HealthMeasureHistory healthHistory;
 
     /**
-     * Gets the value of the measure property.
+     * Gets the value of the healthHistory property.
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link HealthMeasureHistory }
      *     
      */
-    public Object getMeasure() {
-        return measure;
+    public HealthMeasureHistory getHealthHistory() {
+        return healthHistory;
     }
 
     /**
-     * Sets the value of the measure property.
+     * Sets the value of the healthHistory property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link HealthMeasureHistory }
      *     
      */
-    public void setMeasure(Object value) {
-        this.measure = value;
+    public void setHealthHistory(HealthMeasureHistory value) {
+        this.healthHistory = value;
     }
 
 }

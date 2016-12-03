@@ -3,7 +3,6 @@ package introsde.assignment.soap.ws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -18,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="personId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element ref="{http://ws.soap.assignment.introsde/}measure" minOccurs="0"/>
+ *         &lt;element name="measureHistory" type="{http://ws.soap.assignment.introsde/}healthMeasureHistory" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,13 +29,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "updatePersonHistoryMeasure", propOrder = {
     "personId",
-    "measure"
+    "measureHistory"
 })
 public class UpdatePersonHistoryMeasure {
 
     protected long personId;
-    @XmlElement(namespace = "http://ws.soap.assignment.introsde/", nillable = true)
-    protected Object measure;
+    protected HealthMeasureHistory measureHistory;
 
     /**
      * Gets the value of the personId property.
@@ -55,27 +53,27 @@ public class UpdatePersonHistoryMeasure {
     }
 
     /**
-     * Gets the value of the measure property.
+     * Gets the value of the measureHistory property.
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link HealthMeasureHistory }
      *     
      */
-    public Object getMeasure() {
-        return measure;
+    public HealthMeasureHistory getMeasureHistory() {
+        return measureHistory;
     }
 
     /**
-     * Sets the value of the measure property.
+     * Sets the value of the measureHistory property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link HealthMeasureHistory }
      *     
      */
-    public void setMeasure(Object value) {
-        this.measure = value;
+    public void setMeasureHistory(HealthMeasureHistory value) {
+        this.measureHistory = value;
     }
 
 }

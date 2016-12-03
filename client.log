@@ -1,4 +1,58 @@
-     [java] Result ==> [introsde.assignment.soap.ws.Person@67b467e9]
-     [java] First Person in the list ==> HOLDER
-     [java] Result ==> HOLDER
-     [java] Result ==> HOLDER
+     [java] http://127.0.1.1:6902/ws/people?wsdl
+     [java] 
+     [java] --------------------Task1: readPersonList() --------------------
+     [java] 
+     [java] 
+     [java]  ==> PersonId: 3
+     [java]  ==> Firstname: Jon jr. jr. jr. jr. jr. jr. jr. jr. jr. jr. jr. jr. jr. jr. jr. jr. jr. jr. jr.
+     [java]  ==> Lastname: Metal
+     [java]  ==> Birthdate: 1945-01-01T00:00:00+01:00
+     [java]  ==> Email: jj.norris@gmail.com
+     [java]  ==> Username: jj.norris
+     [java]  ==> Current Health Profile:
+     [java] 
+     [java] 	 No Measures
+     [java] 
+     [java] 
+     [java]  ==> PersonId: 1156
+     [java]  ==> Firstname: Jim
+     [java]  ==> Lastname: Wood
+     [java]  ==> Birthdate: 1945-01-01T00:00:00+01:00
+     [java]  ==> Email: jj.norris@gmail.com
+     [java]  ==> Username: jj.norris
+     [java]  ==> Current Health Profile:
+     [java] 
+     [java] 	 No Measures
+     [java] 
+     [java] 
+     [java] -------------------- Task8: readPersonMeasure(3, steps , 153) ----------------------------
+     [java] 
+     [java] Measure with mid 153:
+     [java] 
+     [java] 	 ==> Mid: 153
+     [java] 	 ==> Date Registered: 2016-11-29T00:00:00+01:00
+     [java] 	 ==> Measure Value: 333
+     [java] 	 ==> Measure Type: steps
+     [java] 	 ==> Measure Value Type: integer
+     [java] 
+     [java] 
+     [java] -------------------- Task9: savePersonMeasure(3, measure) ----------------------------
+     [java] 
+     [java] 	 ==> Mid: 0
+     [java] 	 ==> Date Registered: null
+     [java] 	 ==> Measure Value: 3331
+     [java] 	 ==> Measure Type: steps
+     [java] 	 ==> Measure Value Type: integer
+     [java] 
+     [java] Exception in thread "main" com.sun.xml.ws.fault.ServerSOAPFaultException: Client received SOAP Fault from server: java.lang.NullPointerException Please see the server log to find more detail regarding exact cause of the failure.
+     [java] 	at com.sun.xml.ws.fault.SOAP11Fault.getProtocolException(SOAP11Fault.java:193)
+     [java] 	at com.sun.xml.ws.fault.SOAPFaultBuilder.createException(SOAPFaultBuilder.java:125)
+     [java] 	at com.sun.xml.ws.client.sei.StubHandler.readResponse(StubHandler.java:253)
+     [java] 	at com.sun.xml.ws.db.DatabindingImpl.deserializeResponse(DatabindingImpl.java:181)
+     [java] 	at com.sun.xml.ws.db.DatabindingImpl.deserializeResponse(DatabindingImpl.java:258)
+     [java] 	at com.sun.xml.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:117)
+     [java] 	at com.sun.xml.ws.client.sei.SyncMethodHandler.invoke(SyncMethodHandler.java:91)
+     [java] 	at com.sun.xml.ws.client.sei.SEIStub.invoke(SEIStub.java:154)
+     [java] 	at com.sun.proxy.$Proxy34.savePersonMeasure(Unknown Source)
+     [java] 	at client.PeopleClient.main(Unknown Source)
+     [java] Java Result: 1

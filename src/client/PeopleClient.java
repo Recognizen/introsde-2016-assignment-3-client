@@ -2,6 +2,8 @@ package client;
 
 import java.util.List;
 
+import javax.xml.ws.Holder;
+
 import introsde.assignment.soap.ws.*;
 
 
@@ -30,7 +32,7 @@ public class PeopleClient{
         if(!personList.isEmpty())
         	personId = personList.get(0).getPersonId();
         
-        
+       
 
         //-------------------- Task 2 ----------------------------
         System.out.println("\n--------------------Task2: readPerson("+personId+")--------------------\n");
@@ -39,23 +41,26 @@ public class PeopleClient{
     	printPerson(p);
     	
 
-    	
+
         //-------------------- Task 3 ----------------------------
         System.out.println("\n-------------------- Task3: updatePerson(Person p) ----------------------------\n");
 
         p.setFirstname(p.getFirstname() + " jr.");
-        Person updateP = people.updatePerson(p);
+        Holder<Person> personHolder = new Holder<Person>(p);
+        people.updatePerson(personHolder);
         //print first person of the list after re-requesting it
+        Person updateP = personHolder.value;
         printPerson(updateP);
 
-        
 
         //-------------------- Task 4 ----------------------------
         System.out.println("\n-------------------- Task4: createPerson(Person p) ----------------------------\n");
         
         updateP.setFirstname("Jim");
-        Person newPerson = people.createPerson(updateP);
+        personHolder = new Holder<Person>(updateP);
+        people.createPerson(personHolder);
         //reprint the person to see if it was updated
+        Person newPerson = personHolder.value;
         printPerson(newPerson);
 
         
@@ -63,12 +68,12 @@ public class PeopleClient{
         //-------------------- Task 5 ----------------------------
         System.out.println("\n-------------------- Task5: deletePerson("+newPerson.getPersonId()+") ----------------------------\n");
         
-        people.deletePerson(newPerson.getPersonId());
+        Holder<Long> idHolder = new Holder<Long>(newPerson.getPersonId());
+        people.deletePerson(idHolder);
         System.out.println("Running readPerson("+newPerson.getPersonId()+"):");
         //retrying to print the person to see if it still exists (if something was returned)
         printPerson(people.readPerson(newPerson.getPersonId()));
         
-
         
         //-------------------- Task 6 ----------------------------
         System.out.println("\n-------------------- Task6: readPersonHistory("+personId+",steps) ----------------------------\n");
@@ -85,7 +90,7 @@ public class PeopleClient{
         } else {
         	System.out.println("\t No measures of type steps for Person with id: "+personId);
         }
-        
+
         
         
         //-------------------- Task 7 ----------------------------
@@ -113,6 +118,7 @@ public class PeopleClient{
         newMeasure.setMeasureValue(measure.getMeasureValue()+"1");
         newMeasure.setMeasureDefinition(measure.getMeasureDefinition());
         //returning the person on whose healthprofile the measure was added
+        printMeasure(newMeasure);
         Person personT9 = people.savePersonMeasure(personId, newMeasure);
         //print the person to see if he has a new measure
         printPerson(personT9);
@@ -124,7 +130,7 @@ public class PeopleClient{
         newMeasure = null;
     	//Getting a measure from the person (since we added one before it should exist)
         if(personT9.getCurrentHealth().getMeasure() != null){
-        	newMeasure = personT9.getCurrentHealth().getMeasure().get(0);
+        	newMeasure =  (Measure)personT9.getCurrentHealth().getMeasure().get(0);
         	//modify the value of the measure
         	newMeasure.setMeasureValue(newMeasure.getMeasureValue()+"1");
             people.updatePersonMeasure(personId, newMeasure);
@@ -132,7 +138,7 @@ public class PeopleClient{
             printPerson(people.readPerson(personT9.getPersonId()));
         } else {
         	System.out.println("Measure not found.");
-        }  
+        }
     }
     
     //Prints the given and current healthprofile

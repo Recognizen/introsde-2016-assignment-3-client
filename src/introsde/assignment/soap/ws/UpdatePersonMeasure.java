@@ -3,7 +3,6 @@ package introsde.assignment.soap.ws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -18,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="personId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element ref="{http://ws.soap.assignment.introsde/}measure" minOccurs="0"/>
+ *         &lt;element name="measure" type="{http://ws.soap.assignment.introsde/}measure" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,8 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 public class UpdatePersonMeasure {
 
     protected long personId;
-    @XmlElement(namespace = "http://ws.soap.assignment.introsde/", nillable = true)
-    protected Object measure;
+    protected Measure measure;
 
     /**
      * Gets the value of the personId property.
@@ -59,10 +57,10 @@ public class UpdatePersonMeasure {
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link Measure }
      *     
      */
-    public Object getMeasure() {
+    public Measure getMeasure() {
         return measure;
     }
 
@@ -71,10 +69,10 @@ public class UpdatePersonMeasure {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link Measure }
      *     
      */
-    public void setMeasure(Object value) {
+    public void setMeasure(Measure value) {
         this.measure = value;
     }
 

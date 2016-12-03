@@ -45,7 +45,7 @@ public class PeopleClient{
         //-------------------- Task 3 ----------------------------
         System.out.println("\n-------------------- Task3: updatePerson(Person p) ----------------------------\n");
 
-        System.out.println("Updating first name of "+p.getFirstname() + "\n");
+        System.out.println("Updating first name of "+p.getFirstname() + ".\n");
 
         p.setFirstname(p.getFirstname() + " jr.");
         Holder<Person> personHolder = new Holder<Person>(p);
@@ -58,7 +58,7 @@ public class PeopleClient{
         //-------------------- Task 4 ----------------------------
         System.out.println("\n-------------------- Task4: createPerson(Person p) ----------------------------\n");
 
-        System.out.println("Adding a new person with firstname Jim\n");
+        System.out.println("Adding a new person with firstname Jim.\n");
         
         updateP.setFirstname("Jim");
         personHolder = new Holder<Person>(updateP);
@@ -72,7 +72,7 @@ public class PeopleClient{
         //-------------------- Task 5 ----------------------------
         System.out.println("\n-------------------- Task5: deletePerson("+newPerson.getPersonId()+") ----------------------------\n");
         
-        System.out.println("Deleting the person added in step 4 having new id: "+newPerson.getPersonId());
+        System.out.println("Deleting the person added in step 4 having new id: "+newPerson.getPersonId()+"\n");
 
         Holder<Long> idHolder = new Holder<Long>(newPerson.getPersonId());
         people.deletePerson(idHolder);

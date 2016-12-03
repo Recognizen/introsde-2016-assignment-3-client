@@ -73,6 +73,8 @@
      [java] 
      [java] -------------------- Task3: updatePerson(Person p) ----------------------------
      [java] 
+     [java] Updating first name of Jon.
+     [java] 
      [java] 
      [java]  ==> PersonId: 3
      [java]  ==> Firstname: Jon jr.
@@ -100,6 +102,8 @@
      [java] 
      [java] -------------------- Task4: createPerson(Person p) ----------------------------
      [java] 
+     [java] Adding a new person with firstname Jim.
+     [java] 
      [java] 
      [java]  ==> PersonId: 1506
      [java]  ==> Firstname: Jim
@@ -126,6 +130,8 @@
      [java] 
      [java] 
      [java] -------------------- Task5: deletePerson(1506) ----------------------------
+     [java] 
+     [java] Deleting the person added in step 4 having new id: 1506
      [java] 
      [java] Running readPerson(1506):
      [java] 	Person not found.
@@ -171,6 +177,8 @@
      [java] 
      [java] -------------------- Task9: savePersonMeasure(3, measure) ----------------------------
      [java] 
+     [java] Adding/Replacing measure of type steps to person having id: 3
+     [java] 
      [java] 
      [java]  ==> PersonId: 3
      [java]  ==> Firstname: Jon jr.
@@ -189,7 +197,7 @@
      [java] 
      [java] 	  Measure 2
      [java] 	 ==> Mid: 1386
-     [java] 	 ==> Date Registered: 2016-12-03T18:02:06.818Z
+     [java] 	 ==> Date Registered: 2016-12-03T19:30:38.671Z
      [java] 	 ==> Measure Value: 3331
      [java] 	 ==> Measure Type: steps
      [java] 	 ==> Measure Value Type: integer
@@ -197,6 +205,8 @@
      [java] 
      [java] 
      [java] -------------------- Task10: updatePersonMeasure(3, measure) ----------------------------
+     [java] 
+     [java] Updating measure with mid: 1034 of person having id: 3
      [java] 
      [java] 
      [java]  ==> PersonId: 3
@@ -216,7 +226,7 @@
      [java] 
      [java] 	  Measure 2
      [java] 	 ==> Mid: 1386
-     [java] 	 ==> Date Registered: 2016-12-03T18:02:06.818Z
+     [java] 	 ==> Date Registered: 2016-12-03T19:30:38.671Z
      [java] 	 ==> Measure Value: 3331
      [java] 	 ==> Measure Type: steps
      [java] 	 ==> Measure Value Type: integer

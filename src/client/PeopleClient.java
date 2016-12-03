@@ -45,6 +45,8 @@ public class PeopleClient{
         //-------------------- Task 3 ----------------------------
         System.out.println("\n-------------------- Task3: updatePerson(Person p) ----------------------------\n");
 
+        System.out.println("Updating first name of "+p.getFirstname() + "\n");
+
         p.setFirstname(p.getFirstname() + " jr.");
         Holder<Person> personHolder = new Holder<Person>(p);
         people.updatePerson(personHolder);
@@ -55,6 +57,8 @@ public class PeopleClient{
 
         //-------------------- Task 4 ----------------------------
         System.out.println("\n-------------------- Task4: createPerson(Person p) ----------------------------\n");
+
+        System.out.println("Adding a new person with firstname Jim\n");
         
         updateP.setFirstname("Jim");
         personHolder = new Holder<Person>(updateP);
@@ -68,6 +72,8 @@ public class PeopleClient{
         //-------------------- Task 5 ----------------------------
         System.out.println("\n-------------------- Task5: deletePerson("+newPerson.getPersonId()+") ----------------------------\n");
         
+        System.out.println("Deleting the person added in step 4 having new id: "+newPerson.getPersonId());
+
         Holder<Long> idHolder = new Holder<Long>(newPerson.getPersonId());
         people.deletePerson(idHolder);
         System.out.println("Running readPerson("+newPerson.getPersonId()+"):");
@@ -117,6 +123,9 @@ public class PeopleClient{
         Measure newMeasure = new Measure();
         newMeasure.setMeasureValue(measure.getMeasureValue()+"1");
         newMeasure.setMeasureDefinition(measure.getMeasureDefinition());
+
+        System.out.println("Adding/Replacing measure of type "+measure.getMeasureDefinition().getMeasureType()+" to person having id: "+personId +"\n");
+
         //returning the person on whose healthprofile the measure was added
         Person personT9 = people.savePersonMeasure(personId, newMeasure);
         //print the person to see if he has a new measure
@@ -125,6 +134,7 @@ public class PeopleClient{
         
         //-------------------- Task 10 ----------------------------
         System.out.println("\n-------------------- Task10: updatePersonMeasure("+personId+", measure) ----------------------------\n");
+
         
         newMeasure = null;
     	//Getting a measure from the person (since we added one before it should exist)
@@ -134,6 +144,7 @@ public class PeopleClient{
         	newMeasure.setMeasureValue(newMeasure.getMeasureValue()+"1");
             people.updatePersonMeasure(personId, newMeasure);
             //reprint the people to see the differences
+            System.out.println("Updating measure with mid: "+ newMeasure.getMid() +" of person having id: "+personId +"\n");
             printPerson(people.readPerson(personT9.getPersonId()));
         } else {
         	System.out.println("Measure not found.");

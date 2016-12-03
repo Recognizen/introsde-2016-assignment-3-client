@@ -118,7 +118,6 @@ public class PeopleClient{
         newMeasure.setMeasureValue(measure.getMeasureValue()+"1");
         newMeasure.setMeasureDefinition(measure.getMeasureDefinition());
         //returning the person on whose healthprofile the measure was added
-        printMeasure(newMeasure);
         Person personT9 = people.savePersonMeasure(personId, newMeasure);
         //print the person to see if he has a new measure
         printPerson(personT9);

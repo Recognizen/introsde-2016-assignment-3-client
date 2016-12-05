@@ -7,4 +7,12 @@
 
 http://safe-everglades-33716.herokuapp.com/ws/people?wsd
 
-#Execute Client: ant execute.client
+#Client
+
+##Stubs
+
+Stubs generated with: wsimport -keep http://safe-everglades-33716.herokuapp.com/ws/people?wsdl
+
+##Execute Client 
+
+ant execute.client
